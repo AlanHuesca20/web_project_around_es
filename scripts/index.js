@@ -26,3 +26,19 @@ link:"https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.j
 initialCards.forEach(function(item) {
 console.log(item);
 });
+
+
+const editButton = document.querySelector(".profile__edit-button");
+const editModal = document.querySelector("#edit-popup");
+const editCloseBtn = editModal.querySelector(".popup__close");
+
+function openModal() {
+    editModal.classList.add("popup_is-opened");
+}
+
+function closeModal() {
+    editModal.classList.remove("popup_is-opened");
+}
+
+editButton.addEventListener("click", openModal);
+editCloseBtn.addEventListener("click", closeModal);
