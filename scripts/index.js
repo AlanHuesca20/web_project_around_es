@@ -42,8 +42,10 @@ const addModal = document.querySelector("#new-card-popup");
 const addCloseBtn = addModal.querySelector(".popup__close");
 const addInputName = addModal.querySelector(".popup__input_type_card-name");
 const addInputLink = addModal.querySelector(".popup__input_type_url");
+const formNewCardEl = addModal.querySelector("#new-card-form");
 const imageModal = document.querySelector("#image-popup");
 const imageCloseBtn = imageModal.querySelector(".popup__close");
+const imagePopup = imageModal.querySelector(".popup__image");
 const cardsContainer = document.querySelector(".cards__list");
 
 function openModal(modal) {
@@ -58,6 +60,7 @@ editButton.addEventListener("click", () => openModal(editModal));
 editCloseBtn.addEventListener("click", () => closeModal(editModal));
 addButton.addEventListener("click", () => openModal(addModal));
 addCloseBtn.addEventListener("click", () => closeModal(addModal));
+imageCloseBtn.addEventListener("click", () => closeModal(imageModal));
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -69,6 +72,7 @@ function handleProfileFormSubmit(event) {
 }
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
+formNewCardEl.addEventListener("submit", handleCardFormSubmit);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
@@ -94,6 +98,8 @@ function getCardElement(name, link) {
   cardDeleteBtn.addEventListener("click", function () {
     cardElement.remove();
   });
+
+  cardImage.addEventListener("click", function())
 
   return cardElement;
 }
