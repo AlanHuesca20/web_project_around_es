@@ -25,10 +25,6 @@ let initialCards = [
   },
 ];
 
-initialCards.forEach(function (item) {
-  console.log(item);
-});
-
 const editButton = document.querySelector(".profile__edit-button");
 const editModal = document.querySelector("#edit-popup");
 const editCloseBtn = editModal.querySelector(".popup__close");
@@ -44,8 +40,11 @@ const cardsTemplate = document
 const addButton = document.querySelector(".profile__add-button");
 const addModal = document.querySelector("#new-card-popup");
 const addCloseBtn = addModal.querySelector(".popup__close");
+const addInputName = addModal.querySelector(".popup__input_type_card-name");
+const addInputLink = addModal.querySelector(".popup__input_type_url");
 const imageModal = document.querySelector("#image-popup");
 const imageCloseBtn = imageModal.querySelector(".popup__close");
+const cardsContainer = document.querySelector(".cards__list");
 
 function openModal() {
   editModal.classList.add("popup_is-opened");
@@ -81,6 +80,11 @@ formElement.addEventListener("submit", handleProfileFormSubmit);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
+  addInputName.textContent = addInputName.value;
+  addInputLink.textContent = addInputLink.value;
+  closeModal1();
+  cardTitle.textContent = addInputName.value;
+  cardImage.textContent = addInputLink.value;
 }
 
 function getCardElement(name, link) {
@@ -106,4 +110,9 @@ function getCardElement(name, link) {
 
 function renderCard(name, link) {
   const cardEl = getCardElement(name, link);
+  cardsContainer.append(cardEl);
 }
+
+initialCards.forEach(function (item) {
+  renderCard(item.name, item.link);
+});
