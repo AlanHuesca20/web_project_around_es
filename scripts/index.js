@@ -46,32 +46,24 @@ const imageModal = document.querySelector("#image-popup");
 const imageCloseBtn = imageModal.querySelector(".popup__close");
 const cardsContainer = document.querySelector(".cards__list");
 
-function openModal() {
-  editModal.classList.add("popup_is-opened");
+function openModal(modal) {
+  modal.classList.add("popup_is-opened");
 }
 
-function closeModal() {
-  editModal.classList.remove("popup_is-opened");
+function closeModal(modal) {
+  modal.classList.remove("popup_is-opened");
 }
 
-function openModal1() {
-  addModal.classList.add("popup_is-opened");
-}
-
-function closeModal1() {
-  addModal.classList.remove("popup_is-opened");
-}
-
-editButton.addEventListener("click", openModal);
-editCloseBtn.addEventListener("click", closeModal);
-addButton.addEventListener("click", openModal1);
-addCloseBtn.addEventListener("click", closeModal1);
+editButton.addEventListener("click", () => openModal(editModal));
+editCloseBtn.addEventListener("click", () => closeModal(editModal));
+addButton.addEventListener("click", () => openModal(addModal));
+addCloseBtn.addEventListener("click", () => closeModal(addModal));
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
   nameInput.textContent = nameInput.value;
   jobInput.textContent = jobInput.value;
-  closeModal();
+  closeModal(editModal);
   titleProfile.textContent = nameInput.value;
   descriptionProfile.textContent = jobInput.value;
 }
@@ -80,11 +72,8 @@ formElement.addEventListener("submit", handleProfileFormSubmit);
 
 function handleCardFormSubmit(evt) {
   evt.preventDefault();
-  addInputName.textContent = addInputName.value;
-  addInputLink.textContent = addInputLink.value;
-  closeModal1();
-  cardTitle.textContent = addInputName.value;
-  cardImage.textContent = addInputLink.value;
+  renderCard(addInputName.value, addInputLink.value);
+  closeModal(addModal);
 }
 
 function getCardElement(name, link) {
@@ -93,7 +82,8 @@ function getCardElement(name, link) {
   const cardImage = cardElement.querySelector(".card__image");
 
   cardTitle.textContent = name;
-  cardImage.textContent = link;
+  cardImage.src = link;
+  cardImage.alt = name;
 
   const cardLikeBtn = cardElement.querySelector(".card__like-button");
   cardLikeBtn.addEventListener("click", function (evt) {
