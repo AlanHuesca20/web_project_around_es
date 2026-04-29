@@ -64,11 +64,9 @@ imageCloseBtn.addEventListener("click", () => closeModal(imageModal));
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
-  nameInput.textContent = nameInput.value;
-  jobInput.textContent = jobInput.value;
-  closeModal(editModal);
   titleProfile.textContent = nameInput.value;
   descriptionProfile.textContent = jobInput.value;
+  closeModal(editModal);
 }
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
@@ -78,6 +76,14 @@ function handleCardFormSubmit(evt) {
   evt.preventDefault();
   renderCard(addInputName.value, addInputLink.value);
   closeModal(addModal);
+}
+
+function handlePreviewPicture(name, link) {
+  const imageCaption = imageModal.querySelector(".popup__caption");
+  imagePopup.src = link;
+  imagePopup.alt = name;
+  imageCaption.textContent = name;
+  openModal(imageModal);
 }
 
 function getCardElement(name, link) {
@@ -99,14 +105,16 @@ function getCardElement(name, link) {
     cardElement.remove();
   });
 
-  cardImage.addEventListener("click", function())
+  cardImage.addEventListener("click", () => {
+    handlePreviewPicture(name, link);
+  });
 
   return cardElement;
 }
 
 function renderCard(name, link) {
   const cardEl = getCardElement(name, link);
-  cardsContainer.append(cardEl);
+  cardsContainer.prepend(cardEl);
 }
 
 initialCards.forEach(function (item) {
