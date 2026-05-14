@@ -157,3 +157,9 @@
     padding: 0;
   }
 }
+
+.popup__button:disabled {
+  background-color: grey;
+  cursor: not-allowed;
+  opacity: 0.6;
+}

@@ -178,14 +178,22 @@
               name="name"
               placeholder="Nombre"
               type="text"
+              required
+              minlength="2"
+              maxlength="40"
             />
             <input
               class="popup__input popup__input_type_description"
               name="description"
               placeholder="Acerca de mí"
               type="text"
+              required
+              minlength="2"
+              maxlength="200"
             />
-            <button class="button popup__button" type="submit">Guardar</button>
+            <button class="button popup__button" type="submit" disabled>
+              Guardar
+            </button>
           </form>
         </div>
       </div>
@@ -204,6 +212,8 @@
               placeholder="Título"
               required
               type="text"
+              minlength="2"
+              maxlength="30"
             />
             <input
               class="popup__input popup__input_type_url"
@@ -212,7 +222,9 @@
               required
               type="url"
             />
-            <button class="button popup__button" type="submit">Crear</button>
+            <button class="button popup__button" type="submit" disabled>
+              Crear
+            </button>
           </form>
         </div>
       </div>
