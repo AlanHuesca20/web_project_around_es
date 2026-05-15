@@ -169,3 +169,29 @@ inputsFormEdit.forEach(function (input) {
     toggleButtonState(inputs, submitButton);
   });
 });
+
+/* ERROR */
+
+function showInputError(element, errorMessage) {
+  const errorElement = formElement.querySelector(`.${element.id}-input-error`);
+  element.classList.add("form__input_type_error");
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add("form__input-error_active");
+}
+
+function hideInputError(element) {
+  const errorElement = formElement.querySelector(`.${element.id}-input-error`);
+  element.classList.remove("form__input_type_error");
+  errorElement.classList.remove("form__input-error_active");
+  errorElement.textContent = "";
+}
+
+inputsFormNewCard.forEach((input) => {
+  input.addEventListener("input", function () {
+    if (!input.validity.valid) {
+      showInputError(input, input.validationMessage);
+    } else {
+      hideInputError(input);
+    }
+  });
+});

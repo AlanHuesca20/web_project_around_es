@@ -159,7 +159,25 @@
 }
 
 .popup__button:disabled {
-  background-color: grey;
+  background-color: white;
   cursor: not-allowed;
   opacity: 0.6;
+  border: 2px solid gray;
+  color: gray;
+}
+
+/* ERRORERS */
+
+.form__input_type_error {
+  border-color: red;
+}
+
+.form__input-error {
+  display: none;
+  color: red;
+  font-size: 12px;
+}
+
+.form__input-error_active {
+  display: block;
 }
