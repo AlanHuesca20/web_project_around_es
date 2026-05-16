@@ -181,7 +181,9 @@
               required
               minlength="2"
               maxlength="40"
+              id="edit-name"
             />
+            <span class="edit-name-input-error popup__input-error"></span>
             <input
               class="popup__input popup__input_type_description"
               name="description"
@@ -190,7 +192,11 @@
               required
               minlength="2"
               maxlength="200"
+              id="edit-description"
             />
+            <span
+              class="edit-description-input-error popup__input-error"
+            ></span>
             <button class="button popup__button" type="submit" disabled>
               Guardar
             </button>
@@ -214,18 +220,18 @@
               type="text"
               minlength="2"
               maxlength="30"
-              id="nombre"
+              id="card-name"
             />
-            <span class="nombre-input-error popup__input-error"></span>
+            <span class="card-name-input-error popup__input-error"></span>
             <input
               class="popup__input popup__input_type_url"
               name="link"
               placeholder="Enlace a la imagen"
               required
               type="url"
-              id="nombre"
+              id="card-link"
             />
-            <span class="nombre-input-error popup__input-error"></span>
+            <span class="card-link-input-error popup__input-error"></span>
             <button class="button popup__button" type="submit" disabled>
               Crear
             </button>

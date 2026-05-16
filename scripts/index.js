@@ -166,32 +166,56 @@ inputsFormEdit.forEach(function (input) {
       hideInputError(input);
     }
 
-    toggleButtonState(inputs, submitButton);
+    toggleButtonState("inputs", submitButton);
   });
 });
 
-/* ERROR */
+/* ERROR FORM1 */
 
-function showInputError(element, errorMessage) {
-  const errorElement = formElement.querySelector(`.${element.id}-input-error`);
-  element.classList.add("form__input_type_error");
+function showInputError(inputsFormEdit, errorMessage) {
+  const errorElement = formEdit.querySelector(
+    `.${inputsFormEdit.id}-input-error`,
+  );
+
+  inputsFormEdit.classList.add("popup__input_type_error");
   errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
+  errorElement.classList.add("popup__input-error_active");
 }
 
-function hideInputError(element) {
-  const errorElement = formElement.querySelector(`.${element.id}-input-error`);
-  element.classList.remove("form__input_type_error");
-  errorElement.classList.remove("form__input-error_active");
+function hideInputError(inputsFormEdit) {
+  const errorElement = formEdit.querySelector(
+    `.${inputsFormEdit.id}-input-error`,
+  );
+
+  inputsFormEdit.classList.remove("popup__input_type_error");
+  errorElement.classList.remove("popup__input-error_active");
   errorElement.textContent = "";
 }
 
-inputsFormNewCard.forEach((input) => {
+const inputs = formEdit.querySelectorAll(".popup__input");
+
+inputsFormEdit.forEach((input) => {
   input.addEventListener("input", function () {
     if (!input.validity.valid) {
-      showInputError(input, input.validationMessage);
+      showInputError(formEdit, input.validationMessage);
     } else {
-      hideInputError(input);
+      hideInputError(formEdit, input);
     }
   });
 });
+
+/*ERROR FORM2 */
+
+/* Cerrar modales */
+
+const handleEscUp = (evt) => {
+  evt.preventDefault();
+  isEscEvent(evt, closeModal);
+};
+
+const isEscEvent = (evt, action) => {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".popup_is-opened");
+    action(activePopup);
+  }
+};
