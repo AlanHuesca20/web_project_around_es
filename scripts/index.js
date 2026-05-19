@@ -122,73 +122,62 @@ initialCards.forEach(function (item) {
 });
 
 const popupForms = document.querySelectorAll(".popup__form");
-const popupInputs = popupForms.querySelectorAll(".popup__input");
-const popupButton = popupForms.querySelectorAll(".popup__button");
 
-popupForms.addEventListener("input", () => {
-  if (popupForms.checkValidity()) {
-    popupButton.disabled = false;
-  } else {
-    popupButton.disabled = true;
-  }
-});
+function showInputError(form, input, errorMessage) {
+  const errorElement = form.querySelector(`.${input.id}-input-error`);
 
-function hasInvalidInput(popupInputs) {
-  return Array.from(popupInputs).some(function (input) {
-    !input.validity.valid;
-  });
-}
-
-function toggleButtonState(popupInputs, popupButton) {
-  if (hasInvalidInput(popupInputs)) {
-    popupButton.disabled = true;
-  } else {
-    popupButton.disabled = false;
-  }
-}
-
-popupForms.forEach(function (input) {
-  input.addEventListener("input", function () {
-    if (!input.validity.valid) {
-      showInputError(input, input.validationMessage);
-    } else {
-      hideInputError(input);
-    }
-
-    toggleButtonState("inputs", submitButton);
-  });
-});
-
-/* ERROR FORM */
-
-function showInputError(popupInputs, errorMessage) {
-  const errorElement = popupForms.querySelector(
-    `.${popupInputs.id}-input-error`,
-  );
-
-  popupInputs.classList.add("popup__input_type_error");
+  input.classList.add("popup__input_type_error");
   errorElement.textContent = errorMessage;
   errorElement.classList.add("popup__input-error_active");
 }
 
-function hideInputError(popupInputs) {
-  const errorElement = popupForms.querySelector(
-    `.${popupInputs.id}-input-error`,
-  );
+function hideInputError(form, input) {
+  const errorElement = form.querySelector(`.${input.id}-input-error`);
 
-  popupInputs.classList.remove("popup__input_type_error");
+  input.classList.remove("popup__input_type_error");
   errorElement.classList.remove("popup__input-error_active");
   errorElement.textContent = "";
 }
 
-const inputs = popupForms.querySelectorAll(".popup__input");
+function hasInvalidInput(inputs) {
+  return Array.from(inputs).some((input) => {
+    return !input.validity.valid;
+  });
+}
 
-popupInputs.forEach((input) => {
-  input.addEventListener("input", function () {
-    if (!input.validity.valid) {
-      showInputError(popupForms, input.validationMessage);
-    } else {
-      hideInputError(popupForms, input);
-    }
+function toggleButtonState(inputs, button) {
+  button.disabled = hasInvalidInput(inputs);
+}
+
+popupForms.forEach((form) => {
+  const inputs = form.querySelectorAll(".popup__input");
+  const button = form.querySelector(".popup__button");
+
+  toggleButtonState(inputs, button);
+
+  inputs.forEach((input) => {
+    input.addEventListener("input", () => {
+      if (!input.validity.valid) {
+        showInputError(form, input, input.validationMessage);
+      } else {
+        hideInputError(form, input);
+      }
+
+      toggleButtonState(inputs, button);
+    });
   });
 });
+
+/* Cerrar modales */
+
+const handleEscUp = (evt) => {
+  evt.preventDefault();
+  isEscEvent(evt, closeModal);
+};
+
+const isEscEvent = (evt, action) => {
+  if (evt.key === "Escape") {
+    const activePopup = document.querySelector(".popup_is-opened");
+    action(activePopup);
+  }
+};
