@@ -181,3 +181,8 @@ const isEscEvent = (evt, action) => {
     action(activePopup);
   }
 };
+
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+import { openModal } from "./utils.js";
+import { closeModal } from "./utils.js";
