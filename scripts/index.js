@@ -37,7 +37,7 @@ const validationConfig = {
   submitButtonSelector: ".popup__button",
   inactiveButtonClass: "popup__button_disabled",
   inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
+  errorClass: "popup__input-error_active",
 };
 
 // ---------------- DOM ----------------
@@ -87,6 +87,7 @@ function fillProfileForm() {
 // Abrir popup perfil
 function handleOpenEditModal() {
   fillProfileForm();
+  editValidator.resetValidation();
   openModal(editPopup);
 }
 
@@ -108,6 +109,8 @@ function handleCardFormSubmit(evt) {
   });
 
   newCardForm.reset();
+  newCardValidator.resetValidation();
+
   closeModal(newCardPopup);
 }
 
@@ -118,6 +121,7 @@ editButton.addEventListener("click", handleOpenEditModal);
 
 addCardButton.addEventListener("click", () => {
   newCardForm.reset();
+  newCardValidator.resetValidation();
   openModal(newCardPopup);
 });
 
@@ -133,13 +137,12 @@ newCardPopup
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 newCardForm.addEventListener("submit", handleCardFormSubmit);
 
-// Overlay + ESC
-setOverlayClose();
-
 // ---------------- INICIALIZACIÓN ----------------
 
 // Render inicial
-initialCards.forEach(renderCard);
+initialCards.forEach((cardData) => {
+  renderCard(cardData);
+});
 
 // Validación
 const editValidator = new FormValidator(validationConfig, editProfileForm);

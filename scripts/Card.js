@@ -1,7 +1,7 @@
 export class Card {
-  contructor({ name, link }, templateSelector) {
-    this._name = name;
-    this._link = link;
+  constructor(data, templateSelector) {
+    this._name = data.name;
+    this._link = data.link;
     this._templateSelector = templateSelector;
   }
 
@@ -18,14 +18,23 @@ export class Card {
   }
 
   _setEventListeners() {
-    this._deletebutton.addEventListener("click", () => {
+    this._deleteButton.addEventListener("click", () => {
       this._handleDeleteClick();
+    });
+
+    this._likeButton.addEventListener("click", () => {
+      this._likeButton.classList.toggle("card__like-button_is-active");
+    });
+
+    this._imageElement.addEventListener("click", () => {
+      this._handleImageClick(this._name, this._link);
     });
   }
 
   getCardElement() {
     this._element = this._getTemplate();
 
+    this._likeButton = this._element.querySelector(".card__like-button");
     this._imageElement = this._element.querySelector(".card__image");
     this._titleElement = this._element.querySelector(".card__title");
     this._deleteButton = this._element.querySelector(".card__delete-button");
