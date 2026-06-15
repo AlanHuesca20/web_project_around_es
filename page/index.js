@@ -1,6 +1,6 @@
-import { Card } from "./Card.js";
-import { FormValidator } from "./FormValidator.js";
-import { openModal, closeModal } from "./utils.js";
+import { Card } from "../components/Card.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { openModal, closeModal } from "../components/utils.js";
 
 // --- TARJETAS INICIALES --- //
 
