@@ -29,7 +29,7 @@ export class PopupWithForm extends Popup {
       this.renderLoading(true);
 
       this._handleFormSubmit(this._getInputValues()).finally(() =>
-        this.renderLoading(false),
+        
       );
     });
   }
