@@ -2,6 +2,7 @@ import {
   profileDescription,
   profileImage,
   profileTitle,
+  initialCards,
 } from "../utils/constants.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -39,15 +40,11 @@ addCardPopup.setEventListeners();
 
 // ---------- Crear Card ----------
 function createCard(name, link) {
-  const card = new Card(
-    name,
-    link,
-    "#template__cards",
+  const card = new Card({ name, link });
+  ("#card-template",
     (cardName, cardLink) => {
       imagePopup.open(cardName, cardLink);
-    },
-  );
-
+    });
   return card.getCardElement();
 }
 
@@ -63,7 +60,7 @@ const cardsSection = new Section(
   ".cards__list",
 );
 
-cardsSection.renderItems();
+cardsSection.render();
 
 // ---------- Listeners ----------
 document
