@@ -27,6 +27,18 @@ export let initialCards = [
   },
 ];
 
+// ---------------- CONFIG VALIDACIÓN ----------------
+export const validationConfig = {
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
+
+export const editProfileForm = document.querySelector("#edit-profile-form");
+export const newCardForm = document.querySelector("#new-card-form");
+
 export const config = {
   inputSelector: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -46,9 +58,6 @@ export const profileAddButton = document.querySelector(".profile__add-button");
 export const editPopup = document.querySelector("#edit-popup");
 export const newCardPopup = document.querySelector("#new-card-popup");
 export const imagePopup = document.querySelector("#image-popup");
-
-export const editProfileForm = document.querySelector("#edit-profile-form");
-export const newCardForm = document.querySelector("#new-card-form");
 
 export const popupImage = document.querySelector(".popup__image");
 export const popupCaption = document.querySelector(".popup__caption");

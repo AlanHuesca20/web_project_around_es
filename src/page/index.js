@@ -3,6 +3,9 @@ import {
   profileImage,
   profileTitle,
   initialCards,
+  validationConfig,
+  editProfileForm,
+  newCardForm,
 } from "../utils/constants.js";
 import { Card } from "../components/Card.js";
 import { FormValidator } from "../components/FormValidator.js";
@@ -40,11 +43,13 @@ addCardPopup.setEventListeners();
 
 // ---------- Crear Card ----------
 function createCard(name, link) {
-  const card = new Card({ name, link });
-  ("#card-template",
+  const card = new Card(
+    { name, link },
+    "#card-template",
     (cardName, cardLink) => {
       imagePopup.open(cardName, cardLink);
-    });
+    },
+  );
   return card.getCardElement();
 }
 
@@ -75,28 +80,6 @@ document
 
 document.querySelector(".profile__add-button").addEventListener("click", () => {
   addCardPopup.open();
-});
-
-// ---------- Validación ----------
-const selectors = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
-
-document.querySelectorAll(selectors.formSelector).forEach((formElement) => {
-  const validator = new FormValidator(selectors, formElement);
-  validator.enableValidation();
-});
-
-// ---------------- INICIALIZACIÓN ----------------
-
-// Render inicial
-initialCards.forEach((cardData) => {
-  renderCard(cardData);
 });
 
 // Validación
