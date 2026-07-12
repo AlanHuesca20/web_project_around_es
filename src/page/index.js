@@ -103,7 +103,7 @@ editProfilePopup.setEventListeners();
 const addCardPopup = new PopupWithForm("#new-card-popup", (formData) => {
   return api
     .addCard({
-      name: formData.name,
+      name: formData["place-name"],
       link: formData.link,
     })
     .then((cardData) => {
