@@ -12,7 +12,17 @@ import { FormValidator } from "../components/FormValidator.js";
 import { Section } from "../components/Section.js";
 import { PopupWithImage } from "../components/PopupWithImage.js";
 import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
 import { UserInfo } from "../components/UserInfo.js";
+import { Api } from "../components/Api.js";
+
+const api = new Api({
+  baseUrl: "https://around-api.es.tripleten-services.com/v1",
+  headers: {
+    authorization: "78559de7-ba4b-46ac-8eb5-25d0e05ab945",
+    "Content-Type": "application/json",
+  },
+});
 
 // ---------- User Info ----------
 const userInfo = new UserInfo({
@@ -39,6 +49,9 @@ const addCardPopup = new PopupWithForm("#new-card-popup", (formData) => {
   addCardPopup.close();
 });
 addCardPopup.setEventListeners();
+
+const deleteCardPopup = new PopupWithConfirmation("#delete-card-popup");
+deleteCardPopup.setEventListeners();
 
 // ---------- Crear Card ----------
 function createCard(name, link) {

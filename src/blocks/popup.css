@@ -26,6 +26,17 @@
   margin-top: 48px;
 }
 
+.popup__button:disabled {
+  color: #cccccc;
+  border: 1px solid #cccccc;
+  background-color: #ffffff;
+}
+
+.popup__error {
+  color: #ff0000;
+  font-size: 12px;
+}
+
 .popup__button:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;
@@ -115,6 +126,10 @@
   left: 0;
   top: calc(100% + 10px);
   margin: 0;
+}
+
+#delete-card-popup .popup__content {
+  min-height: 181px;
 }
 
 @media screen and (max-width: 544px) {
