@@ -21,12 +21,24 @@ export class PopupWithForm extends Popup {
     return formValues;
   }
 
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Guardando...";
+    } else {
+      this._submitButton.textContent = this._defaultButtonText;
+    }
+  }
+
   setEventListeners() {
     super.setEventListeners();
 
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._getInputValues());
+      this.renderLoading(true);
+
+      this._handleFormSubmit(this._getInputValues()).finally(() =>
+        this.renderLoading(false),
+      );
     });
   }
 

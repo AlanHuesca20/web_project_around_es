@@ -1,6 +1,6 @@
 // --- TARJETAS INICIALES --- //
 
-export let initialCards = [
+export const initialCards = [
   {
     name: "Valle de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
@@ -26,15 +26,6 @@ export let initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
   },
 ];
-
-// ---------------- CONFIG VALIDACIÓN ----------------
-export const validationConfig = {
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__input-error_active",
-};
 
 export const editProfileForm = document.querySelector("#edit-profile-form");
 export const newCardForm = document.querySelector("#new-card-form");
